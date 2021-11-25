@@ -12,7 +12,7 @@ class _WithAFriendState extends State<WithAFriend> {
     return Container(
       child: Center(
         child: Text(
-          'Ayush Hutiya Hai',
+          'new',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 25,
