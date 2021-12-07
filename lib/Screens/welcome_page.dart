@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/Screens/single_player.dart';
-import 'package:tic_tac_toe/Screens/with_a_friend.dart';
 import 'package:tic_tac_toe/theme/theme.dart';
 import 'package:tic_tac_toe/Constants/const.dart';
 import 'package:tic_tac_toe/Components/logo.dart';
+
+import 'multi_player.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = 'welcome_screen';
@@ -52,11 +53,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Navigator.pushNamed(context, SinglePlayer.id);
               },
             ),
+            SizedBox(
+              height: 20.0,
+            ),
             RoundBtn(
               colour: Colors.white,
-              title: "WITH A FRIEND",
+              title: "MULTI PLAYER",
               onPressed: () {
-                Navigator.pushNamed(context, WithAFriend.id);
+                Navigator.pushNamed(context, MultiPlayer.id);
               },
             ),
           ],

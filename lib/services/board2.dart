@@ -4,7 +4,7 @@ import 'dart:math' as math;
 enum BoardState { Done, Play }
 enum GameMode { Solo, Multi }
 
-class BoardService {
+class BoardService2 {
   BehaviorSubject<List<List<String>>> _board$;
   BehaviorSubject<List<List<String>>> get board$ => _board$;
 
@@ -22,47 +22,13 @@ class BoardService {
 
   String _start;
 
-  BoardService() {
+  BoardService2() {
     _initStreams();
   }
 
   void newMove(int i, int j) {
     String player = _player$.value;
     List<List<String>> currentBoard = _board$.value;
-
-    currentBoard[i][j] = player;
-    _board$.add(currentBoard);
-    switchPlayer(player);
-
-    bool isWinner = _checkWinner(i, j);
-
-    if (isWinner) {
-      _updateScore(player);
-      _boardState$.add(MapEntry(BoardState.Done, player));
-      return;
-    } else if (isBoardFull()) {
-      _boardState$.add(MapEntry(BoardState.Done, null));
-    } else if (_gameMode$.value == GameMode.Solo) {
-      botMove();
-    }
-  }
-
-  botMove() {
-    String player = _player$.value;
-    List<List<String>> currentBoard = _board$.value;
-    List<List<int>> temp = List<List<int>>();
-    for (var i = 0; i < currentBoard.length; i++) {
-      for (var j = 0; j < currentBoard[i].length; j++) {
-        if (currentBoard[i][j] == " ") {
-          temp.add([i, j]);
-        }
-      }
-    }
-
-    math.Random rnd = new math.Random();
-    int r = rnd.nextInt(temp.length);
-    int i = temp[r][0];
-    int j = temp[r][1];
 
     currentBoard[i][j] = player;
     _board$.add(currentBoard);
@@ -160,9 +126,8 @@ class BoardService {
       MapEntry(BoardState.Play, ""),
     );
     
-    // if player is in single_player screen
     
-    _gameMode$ = BehaviorSubject<GameMode>.seeded(GameMode.Solo);
+    _gameMode$ = BehaviorSubject<GameMode>.seeded(GameMode.Multi);
 
     _score$ = BehaviorSubject<MapEntry<int, int>>.seeded(MapEntry(0, 0));
     _start = 'X';

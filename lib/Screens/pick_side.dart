@@ -114,7 +114,7 @@ class _PickSideState extends State<PickSide> {
 
                         if (groupValue == 'O') {
                           boardService.player$.add("X");
-                          boardService.botMove();
+                          // boardService.botMove();
                         }
 
                         Navigator.push(
